@@ -170,18 +170,22 @@
 
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
             gap: 3rem;
+            justify-items: center;
         }
 
         .team-card {
             background: rgba(15, 15, 15, 0.6);
             backdrop-filter: blur(20px) saturate(180%);
             border-radius: 30px;
-            overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.05);
             transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
+            display: flex;
+            align-items: stretch;
+            max-width: 700px;
+            overflow: hidden;
         }
 
         .team-card::before {
@@ -205,24 +209,55 @@
         }
 
         .team-card:hover {
-            transform: translateY(-15px);
+            transform: translateY(-10px);
             box-shadow: 0 30px 80px rgba(102, 126, 234, 0.4);
+        }
+
+        .team-image-wrapper {
+            position: relative;
+            width: 280px;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .team-image-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(102, 126, 234, 0.4) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s;
+            z-index: 1;
+        }
+
+        .team-image-wrapper:hover::before {
+            opacity: 1;
         }
 
         .team-image {
             width: 100%;
-            height: 350px;
+            height: 100%;
             object-fit: cover;
             object-position: center 30%;
             display: block;
+            transition: transform 0.5s;
+        }
+
+        .team-image-wrapper:hover .team-image {
+            transform: scale(1.05);
+            filter: brightness(1.1);
         }
 
         .team-content {
             padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex: 1;
         }
 
         .team-name {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 700;
             font-style: normal;
             margin-bottom: 0.5rem;
@@ -233,16 +268,16 @@
         }
 
         .team-role {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: rgba(255, 255, 255, 0.6);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
             font-style: normal;
         }
 
         .team-bio {
             color: rgba(255, 255, 255, 0.7);
-            line-height: 1.8;
-            font-size: 1.05rem;
+            line-height: 1.7;
+            font-size: 1rem;
         }
 
         /* Footer */
@@ -271,6 +306,16 @@
 
             .team-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .team-card {
+                flex-direction: column;
+                max-width: 400px;
+            }
+
+            .team-image-wrapper {
+                width: 100%;
+                height: 350px;
             }
         }
 
@@ -313,10 +358,12 @@
         <div class="container">
             <div class="team-grid">
                 <div class="team-card">
-                    <img src="https://i.imgur.com/7tjXjNg.jpeg" alt="Lasya Jujagiri" class="team-image">
+                    <div class="team-image-wrapper">
+                        <img src="https://i.imgur.com/7tjXjNg.jpeg" alt="Lasya Jujagiri" class="team-image">
+                    </div>
                     <div class="team-content">
                         <h3 class="team-name">Lasya Jujagiri</h3>
-                        <p class="team-role">Junior • Content Creator</p>
+                        <p class="team-role">Junior • AP Lang & AP Physics 1: Algebra Based</p>
                         <p class="team-bio">Hey, I'm Lasya Jujagiri, a junior in high school. I'm more of a sports person—I made varsity tennis in my second year, and I play volleyball and pickleball on weekends when I have time. I'm also involved in FBLA, Science Olympiad, Scholar Bowl, and recently joined the FTL organization.</p>
                     </div>
                 </div>
