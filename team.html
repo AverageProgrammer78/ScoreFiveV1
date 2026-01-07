@@ -23,7 +23,6 @@
             overflow-x: hidden;
         }
 
-        /* Animated mesh gradient background */
         @keyframes mesh {
             0%, 100% { transform: translate(0, 0) scale(1); }
             33% { transform: translate(30px, -50px) scale(1.1); }
@@ -47,7 +46,6 @@
             filter: blur(60px);
         }
 
-        /* Particles */
         .particles {
             position: fixed;
             top: 0;
@@ -75,7 +73,6 @@
             100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
         }
 
-        /* Grid Background */
         .grid-bg {
             position: fixed;
             top: 0;
@@ -90,7 +87,6 @@
             pointer-events: none;
         }
 
-        /* Navigation */
         nav {
             background: rgba(10, 10, 10, 0.7);
             backdrop-filter: blur(20px) saturate(180%);
@@ -169,7 +165,6 @@
             width: 100%;
         }
 
-        /* Hero Section */
         .team-hero {
             padding: 8rem 2rem 4rem;
             text-align: center;
@@ -199,7 +194,6 @@
             line-height: 1.8;
         }
 
-        /* Team Section */
         .team {
             padding: 4rem 2rem 8rem;
             position: relative;
@@ -323,7 +317,6 @@
             font-size: 1rem;
         }
 
-        /* Footer */
         footer {
             background: rgba(10, 10, 10, 0.8);
             backdrop-filter: blur(20px);
@@ -341,7 +334,6 @@
             font-size: 1.1rem;
         }
 
-        /* Responsive */
         @media (max-width: 968px) {
             .team-hero h1 {
                 font-size: 3.5rem;
@@ -374,12 +366,10 @@
     </style>
 </head>
 <body>
-    <!-- Animated Background -->
     <div class="mesh-bg"></div>
     <div class="particles" id="particles"></div>
     <div class="grid-bg"></div>
 
-    <!-- Navigation -->
     <nav>
         <div class="container">
             <a href="index.html" class="logo">ScoreFive</a>
@@ -391,16 +381,24 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="team-hero">
         <h1>Meet the Team</h1>
         <p>We're a group of dedicated students working together to make high-quality test prep accessible to everyone. Get to know the people behind ScoreFive.</p>
     </section>
 
-    <!-- Team Section -->
     <section class="team">
         <div class="container">
             <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-image-wrapper">
+                        <img src="https://i.imgur.com/xkBiv9P.jpeg" alt="Founder" class="team-image">
+                    </div>
+                    <div class="team-content">
+                        <h3 class="team-name">Abhi Upadhyay</h3>
+                        <p class="team-role">Founder/Developer • AP Psychology & Human Geography</p>
+                        <p class="team-bio">I am a high school freshman with a strong interest in artificial intelligence, engineering, and education. I created this platform to provide free, accessible AP resources and help reduce barriers for students preparing for rigorous coursework. I focus on developing and maintaining the site while applying engineering and AI-driven problem-solving principles to improve its functionality, quality, and reach. My goal is to use technology to make high-quality learning resources more equitable and widely available.</p>
+                    </div>
+                </div>
                 <div class="team-card">
                     <div class="team-image-wrapper">
                         <img src="https://i.imgur.com/7tjXjNg.jpeg" alt="Lasya Jujagiri" class="team-image">
@@ -415,14 +413,12 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <p>&copy; 2025 ScoreFive. Built by students, for students.</p>
         <p>Free test prep resources for AP and SAT exams.</p>
     </footer>
 
     <script>
-        // Create floating particles
         const particlesContainer = document.getElementById('particles');
         const particleCount = 30;
 
