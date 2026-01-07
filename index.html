@@ -508,6 +508,109 @@
             color: rgba(255, 255, 255, 0.9);
         }
 
+        /* Team Section */
+        .team {
+            padding: 8rem 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .team .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .team h2 {
+            text-align: center;
+            font-size: 4rem;
+            margin-bottom: 6rem;
+            font-style: normal;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #f093fb 50%, #4facfe 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 5s ease infinite;
+            letter-spacing: -1px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .team-card {
+            background: rgba(15, 15, 15, 0.6);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-radius: 30px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+
+        .team-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 30px;
+            padding: 2px;
+            background: linear-gradient(135deg, #667eea, #f093fb, #4facfe);
+            background-size: 200% 200%;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.5s;
+            animation: gradient-shift 4s ease infinite;
+        }
+
+        .team-card:hover::before {
+            opacity: 1;
+        }
+
+        .team-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 80px rgba(102, 126, 234, 0.4);
+        }
+
+        .team-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .team-content {
+            padding: 2.5rem;
+        }
+
+        .team-name {
+            font-size: 2rem;
+            font-weight: 700;
+            font-style: normal;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #667eea, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .team-role {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 1.5rem;
+            font-style: normal;
+        }
+
+        .team-bio {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
         /* Subjects Section */
         .subjects {
             padding: 8rem 2rem;
@@ -630,6 +733,7 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#subjects">Subjects</a></li>
+                <li><a href="#team">Meet the Team</a></li>
             </ul>
         </div>
     </nav>
@@ -687,6 +791,23 @@
                     </div>
                     <h3>Exam-Focused</h3>
                     <p>Practice tests, FRQs, and MCQs meticulously aligned with actual exam formats and difficulty.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team" id="team">
+        <div class="container">
+            <h2>Meet the Team</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <img src="https://i.imgur.com/7tjXjNg.jpeg" alt="Lasya Jujagiri" class="team-image">
+                    <div class="team-content">
+                        <h3 class="team-name">Lasya Jujagiri</h3>
+                        <p class="team-role">Junior • Content Creator</p>
+                        <p class="team-bio">Hey, I'm Lasya Jujagiri, a junior in high school. I'm more of a sports person—I made varsity tennis in my second year, and I play volleyball and pickleball on weekends when I have time. I'm also involved in FBLA, Science Olympiad, Scholar Bowl, and recently joined the FTL organization.</p>
+                    </div>
                 </div>
             </div>
         </div>
