@@ -212,7 +212,77 @@
             justify-items: center;
         }
 
-        .team-card {
+        .team-card.reveal-card {
+            cursor: pointer;
+            position: relative;
+        }
+
+        .team-card.reveal-card .curtain {
+            position: absolute;
+            inset: 0;
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .team-card.reveal-card .curtain::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(240, 147, 251, 0.1));
+            border-radius: 30px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .team-card.reveal-card:hover .curtain::before {
+            opacity: 1;
+        }
+
+        .curtain-text {
+            font-size: 2.5rem;
+            font-weight: 700;
+            font-style: normal;
+            background: linear-gradient(135deg, #667eea, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .team-card.reveal-card:hover .curtain-text {
+            transform: scale(1.1);
+        }
+
+        .curtain-hint {
+            position: absolute;
+            bottom: 2rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-style: italic;
+        }
+
+        .team-card.reveal-card.revealed .curtain {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-100%);
+        }
+
+        .team-card.reveal-card .team-content {
+            opacity: 0;
+            transition: opacity 0.5s 0.3s;
+        }
+
+        .team-card.reveal-card.revealed .team-content {
+            opacity: 1;
+        }
             background: rgba(15, 15, 15, 0.6);
             backdrop-filter: blur(20px) saturate(180%);
             border-radius: 30px;
@@ -391,22 +461,19 @@
             <div class="team-grid">
                 <div class="team-card">
                     <div class="team-image-wrapper">
-                        <img src="https://i.imgur.com/xkBiv9P.jpeg" alt="Founder" class="team-image">
-                    </div>
-                    <div class="team-content">
-                        <h3 class="team-name">Abhi Upadhyay</h3>
-                        <p class="team-role">Founder/Developer • AP Psychology, AP Human Geography & AP Computer Science Principles</p>
-                        <p class="team-bio">I am a high school freshman with a strong interest in artificial intelligence, engineering, and education. I created this platform to provide free, accessible AP resources and help reduce barriers for students preparing for rigorous coursework. I focus on developing and maintaining the site while applying engineering and AI-driven problem-solving principles to improve its functionality, quality, and reach. My goal is to use technology to make high-quality learning resources more equitable and widely available.</p>
-                    </div>
-                </div>
-                <div class="team-card">
-                    <div class="team-image-wrapper">
                         <img src="https://i.imgur.com/7tjXjNg.jpeg" alt="Lasya Jujagiri" class="team-image">
                     </div>
                     <div class="team-content">
                         <h3 class="team-name">Lasya Jujagiri</h3>
                         <p class="team-role">Social Media Manager • AP Lang & AP Physics 1: Algebra Based</p>
                         <p class="team-bio">Hey, I'm Lasya Jujagiri, a junior in high school. I'm more of a sports person—I made varsity tennis in my second year, and I play volleyball and pickleball on weekends when I have time. I'm also involved in FBLA, Science Olympiad, Scholar Bowl, and recently joined the FTL organization.</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-content">
+                        <h3 class="team-name">Abhi Upadhyay</h3>
+                        <p class="team-role">Founder/Developer • AP Psychology, AP Human Geography & AP Computer Science Principles</p>
+                        <p class="team-bio">I am a high school freshman with a strong interest in artificial intelligence, engineering, and education. I created this platform to provide free, accessible AP resources and help reduce barriers for students preparing for rigorous coursework. I focus on developing and maintaining the site while applying engineering and AI-driven problem-solving principles to improve its functionality, quality, and reach. My goal is to use technology to make high-quality learning resources more equitable and widely available.</p>
                     </div>
                 </div>
             </div>
