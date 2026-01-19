@@ -238,6 +238,20 @@
             cursor: not-allowed;
         }
 
+        .unit-card.available {
+            opacity: 1;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            color: inherit;
+        }
+
+        .unit-card.available:hover {
+            transform: translateY(-8px);
+            border-color: rgba(102, 126, 234, 0.3);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+        }
+
         .unit-card::before {
             content: '';
             position: absolute;
@@ -254,7 +268,11 @@
             animation: gradient-shift 4s ease infinite;
         }
 
-        .unit-card:hover::before {
+        .unit-card.available:hover::before {
+            opacity: 1;
+        }
+
+        .unit-card:not(.available):hover::before {
             opacity: 0.3;
         }
 
@@ -288,6 +306,12 @@
             font-size: 0.9rem;
             font-style: normal;
             color: rgba(255, 255, 255, 0.7);
+        }
+
+        .unit-status.available {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.3), rgba(240, 147, 251, 0.3));
+            color: #fff;
+            font-weight: 600;
         }
 
         /* Footer */
@@ -373,12 +397,12 @@
                     <span class="unit-status">Coming Soon</span>
                 </div>
 
-                <div class="unit-card">
+                <a href="ap-us-government-unit3.html" class="unit-card available">
                     <p class="unit-number">UNIT 3</p>
                     <h3>Civil Liberties and Civil Rights</h3>
                     <p class="unit-weight">Exam Weight: 13%–18%</p>
-                    <span class="unit-status">Coming Soon</span>
-                </div>
+                    <span class="unit-status available">Available Now</span>
+                </a>
 
                 <div class="unit-card">
                     <p class="unit-number">UNIT 4</p>
