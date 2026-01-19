@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AP U.S. Government and Politics - ScoreFive</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inria Sans', sans-serif;
+            font-weight: 300;
+            font-style: italic;
+            line-height: 1.6;
+            color: #e0e0e0;
+            background: #000;
+            overflow-x: hidden;
+        }
+
+        /* Animated mesh gradient background */
+        @keyframes mesh {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
+        .mesh-bg {
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            z-index: 0;
+            opacity: 0.4;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(240, 147, 251, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(79, 172, 254, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 60% 70%, rgba(245, 87, 108, 0.3) 0%, transparent 50%);
+            animation: mesh 20s ease-in-out infinite;
+            filter: blur(60px);
+        }
+
+        /* Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: #667eea;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: float-particle 15s infinite ease-in-out;
+        }
+
+        @keyframes float-particle {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 0.5; }
+            90% { opacity: 0.5; }
+            100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+        }
+
+        /* Grid Background */
+        .grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(102, 126, 234, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(102, 126, 234, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(20px) saturate(180%);
+            padding: 1.2rem 2rem;
+            border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            font-style: normal;
+            background: linear-gradient(135deg, #667eea 0%, #f093fb 50%, #4facfe 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 3s ease infinite;
+            cursor: pointer;
+            transition: transform 0.3s;
+            text-decoration: none;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-weight: 400;
+            font-style: normal;
+            transition: all 0.3s;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #667eea, #f093fb);
+            transition: all 0.3s;
+            transform: translateX(-50%);
+        }
+
+        nav a:hover {
+            color: #f093fb;
+        }
+
+        nav a:hover::before {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            font-style: normal;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #f093fb 50%, #4facfe 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 5s ease infinite;
+            letter-spacing: -2px;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Units Section */
+        .units {
+            padding: 4rem 2rem 8rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .units .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .units h2 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            font-style: normal;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .unit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .unit-card {
+            background: rgba(15, 15, 15, 0.6);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .unit-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            padding: 2px;
+            background: linear-gradient(135deg, #667eea, #f093fb);
+            background-size: 200% 200%;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s;
+            animation: gradient-shift 4s ease infinite;
+        }
+
+        .unit-card:hover::before {
+            opacity: 0.3;
+        }
+
+        .unit-number {
+            font-size: 1rem;
+            font-style: normal;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 0.5rem;
+        }
+
+        .unit-card h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            font-style: normal;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .unit-weight {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-style: normal;
+            margin-bottom: 1rem;
+        }
+
+        .unit-status {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            font-style: normal;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            color: rgba(255, 255, 255, 0.5);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(102, 126, 234, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+            font-style: normal;
+            font-size: 1.1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .unit-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="mesh-bg"></div>
+    <div class="particles" id="particles"></div>
+    <div class="grid-bg"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">ScoreFive</a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="subjects.html">Subjects</a></li>
+                <li><a href="team.html">Meet the Team</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>AP U.S. Government and Politics</h1>
+        <p>Comprehensive notes and study materials for all 5 units of AP U.S. Government and Politics. Master the foundations of American democracy, institutions, and political processes.</p>
+    </section>
+
+    <!-- Units Section -->
+    <section class="units">
+        <div class="container">
+            <h2>Course Units</h2>
+            <div class="unit-grid">
+                <div class="unit-card">
+                    <p class="unit-number">UNIT 1</p>
+                    <h3>Foundations of American Democracy</h3>
+                    <p class="unit-weight">Exam Weight: 15%–22%</p>
+                    <span class="unit-status">Coming Soon</span>
+                </div>
+
+                <div class="unit-card">
+                    <p class="unit-number">UNIT 2</p>
+                    <h3>Interactions Among Branches of Government</h3>
+                    <p class="unit-weight">Exam Weight: 25%–36%</p>
+                    <span class="unit-status">Coming Soon</span>
+                </div>
+
+                <div class="unit-card">
+                    <p class="unit-number">UNIT 3</p>
+                    <h3>Civil Liberties and Civil Rights</h3>
+                    <p class="unit-weight">Exam Weight: 13%–18%</p>
+                    <span class="unit-status">Coming Soon</span>
+                </div>
+
+                <div class="unit-card">
+                    <p class="unit-number">UNIT 4</p>
+                    <h3>American Political Ideologies and Beliefs</h3>
+                    <p class="unit-weight">Exam Weight: 10%–15%</p>
+                    <span class="unit-status">Coming Soon</span>
+                </div>
+
+                <div class="unit-card">
+                    <p class="unit-number">UNIT 5</p>
+                    <h3>Political Participation</h3>
+                    <p class="unit-weight">Exam Weight: 20%–27%</p>
+                    <span class="unit-status">Coming Soon</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 ScoreFive. Built by students, for students.</p>
+        <p>Free test prep resources for AP and SAT exams.</p>
+    </footer>
+
+    <script>
+        // Create floating particles
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 30;
+
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            
+            const colors = ['#667eea', '#f093fb', '#4facfe'];
+            particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+            
+            particlesContainer.appendChild(particle);
+        }
+    </script>
+</body>
+</html>
