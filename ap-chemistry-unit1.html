@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 1: Atomic Structure and Properties - ScoreFive</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inria Sans', sans-serif; font-weight: 400; line-height: 1.7; color: #e0e0e0; background: #000; overflow-x: hidden; }
+        @keyframes mesh { 0%, 100% { transform: translate(0, 0) scale(1); } 33% { transform: translate(30px, -50px) scale(1.1); } 66% { transform: translate(-20px, 20px) scale(0.9); } }
+        .mesh-bg { position: fixed; top: -50%; left: -50%; width: 200%; height: 200%; z-index: 0; opacity: 0.4; background: radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(240, 147, 251, 0.3) 0%, transparent 50%), radial-gradient(circle at 40% 20%, rgba(79, 172, 254, 0.3) 0%, transparent 50%), radial-gradient(circle at 60% 70%, rgba(245, 87, 108, 0.3) 0%, transparent 50%); animation: mesh 20s ease-in-out infinite; filter: blur(60px); }
+        .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+        .particle { position: absolute; width: 3px; height: 3px; background: #667eea; border-radius: 50%; opacity: 0.5; animation: float-particle 15s infinite ease-in-out; }
+        @keyframes float-particle { 0%, 100% { transform: translateY(0) translateX(0); opacity: 0; } 10% { opacity: 0.5; } 90% { opacity: 0.5; } 100% { transform: translateY(-100vh) translateX(50px); opacity: 0; } }
+        .grid-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(102, 126, 234, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(102, 126, 234, 0.03) 1px, transparent 1px); background-size: 50px 50px; z-index: 0; pointer-events: none; }
+        nav { background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(20px) saturate(180%); padding: 1.2rem 2rem; border-bottom: 1px solid rgba(102, 126, 234, 0.2); position: sticky; top: 0; z-index: 1000; }
+        nav .container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 2rem; font-weight: 700; background: linear-gradient(135deg, #667eea 0%, #f093fb 50%, #4facfe 100%); background-size: 200% 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: gradient-shift 3s ease infinite; cursor: pointer; transition: transform 0.3s; text-decoration: none; }
+        .logo:hover { transform: scale(1.05); }
+        @keyframes gradient-shift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+        .back-link { color: #667eea; text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        .back-link:hover { color: #f093fb; }
+        .content { max-width: 900px; margin: 0 auto; padding: 4rem 2rem 8rem; position: relative; z-index: 1; }
+        .unit-header { text-align: center; margin-bottom: 4rem; }
+        .unit-number { font-size: 1.2rem; color: rgba(255, 255, 255, 0.6); margin-bottom: 0.5rem; }
+        .unit-header h1 { font-size: 3.5rem; font-weight: 700; background: linear-gradient(135deg, #667eea 0%, #f093fb 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 1rem; }
+        .topic { margin-bottom: 4rem; padding: 2.5rem; background: rgba(15, 15, 15, 0.6); backdrop-filter: blur(20px); border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.05); }
+        .topic h2 { font-size: 2rem; font-weight: 700; color: #667eea; margin-bottom: 1.5rem; }
+        .topic h3 { font-size: 1.5rem; font-weight: 600; color: #f093fb; margin: 2rem 0 1rem 0; }
+        .topic h4 { font-size: 1.2rem; font-weight: 600; color: #4facfe; margin: 1.5rem 0 0.8rem 0; }
+        .topic p { margin-bottom: 1rem; color: rgba(255, 255, 255, 0.85); }
+        .topic ul, .topic ol { margin-left: 2rem; margin-bottom: 1rem; }
+        .topic li { margin-bottom: 0.5rem; color: rgba(255, 255, 255, 0.8); }
+        .equation { background: rgba(102, 126, 234, 0.1); padding: 1.5rem; border-radius: 10px; border-left: 3px solid #667eea; margin: 1.5rem 0; font-family: 'Courier New', monospace; font-size: 1.1rem; color: #fff; }
+        .key-concept { background: rgba(240, 147, 251, 0.1); padding: 1.5rem; border-radius: 10px; border-left: 3px solid #f093fb; margin: 1.5rem 0; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; background: rgba(255, 255, 255, 0.03); border-radius: 10px; overflow: hidden; }
+        th, td { padding: 1rem; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        th { background: rgba(102, 126, 234, 0.2); font-weight: 600; color: #fff; }
+        .vocab-section { margin-top: 4rem; padding: 2.5rem; background: rgba(15, 15, 15, 0.6); backdrop-filter: blur(20px); border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.05); }
+        .vocab-section h2 { font-size: 2rem; font-weight: 700; color: #4facfe; margin-bottom: 2rem; text-align: center; }
+        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+        .vocab-item { padding: 1rem; background: rgba(255, 255, 255, 0.03); border-radius: 10px; border-left: 3px solid #667eea; }
+        .vocab-term { font-weight: 600; color: #f093fb; margin-bottom: 0.5rem; }
+        .vocab-def { font-size: 0.95rem; color: rgba(255, 255, 255, 0.7); }
+        footer { background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(20px); color: rgba(255, 255, 255, 0.5); padding: 2rem; text-align: center; border-top: 1px solid rgba(102, 126, 234, 0.2); position: relative; z-index: 1; }
+        @media (max-width: 768px) { .unit-header h1 { font-size: 2.5rem; } .topic { padding: 1.5rem; } .vocab-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="mesh-bg"></div>
+    <div class="particles" id="particles"></div>
+    <div class="grid-bg"></div>
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">ScoreFive</a>
+            <a href="ap-chemistry.html" class="back-link">← Back to AP Chemistry</a>
+        </div>
+    </nav>
+    <div class="content">
+        <div class="unit-header">
+            <p class="unit-number">UNIT 1</p>
+            <h1>Atomic Structure and Properties</h1>
+        </div>
+
+        <div class="topic">
+            <h2>Topic 1.1: Moles and Molar Mass</h2>
+            <h3>Mole</h3>
+            <p>A <strong>mole (mol)</strong> is the amount of substance that contains 6.022 × 10²³ particles. This number is also called Avogadro's number.</p>
+            <div class="equation">N<sub>A</sub> = 6.022 × 10²³ particles/mol</div>
+            <p>Particles can be: atoms, molecules, ions or formula units.</p>
+            <div class="key-concept"><strong>FREE TIP:</strong> Always label what kind of particle you're counting!</div>
+            <h3>Why We Can't Count Particles Directly</h3>
+            <p>Atoms are microscopic and lab balances measure grams, not atoms. We need a bridge between mass and number of particles and that bridge is <strong>mole + molar mass</strong>.</p>
+            <h3>Molar Mass (THE MOST IMPORTANT SKILL)</h3>
+            <p><strong>Molar mass</strong> = mass of 1 mole of a substance. Units = grams per mole (g/mol). You can find the Molar Mass by using the periodic table.</p>
+            <p><strong>Example: H₂O</strong></p>
+            <ul><li>1 mole of H₂O = 18.02 g</li><li>1 mole of H₂O = 6.022 × 10²³ molecules</li></ul>
+            <h3>The AMU Connection</h3>
+            <p>Atomic mass unit is used for single atoms or molecules. Too small for lab measurements.</p>
+            <div class="key-concept"><strong>Key Rule:</strong> The mass of 1 particle in amu is numerically equal to the molar mass in grams.<br><br><strong>Example:</strong> One oxygen atom → 16 amu | One mole of oxygen atoms = 16 g</div>
+            <h3>CORE EQUATION YOU MUST KNOW</h3>
+            <div class="equation">n = m/M</div>
+            <p>Where: n = moles, m = mass (grams), M = molar mass (g/mol)</p>
+            <h3>Conversions You MUST Master</h3>
+            <p><strong>Grams → Moles:</strong></p>
+            <div class="equation">Grams × (1 mole / molar mass)</div>
+            <p><strong>Moles → Particles:</strong></p>
+            <div class="equation">moles × 6.022 × 10²³</div>
+            <p><strong>Grams → Particles:</strong> Two steps: (1) grams → moles, (2) moles → particles</p>
+            <h3>Types of "Particles"</h3>
+            <table><tr><th>Substance</th><th>Particle Counted</th></tr><tr><td>Na</td><td>atoms</td></tr><tr><td>CO₂</td><td>molecules</td></tr><tr><td>NaCl</td><td>formula units</td></tr><tr><td>Ca²⁺</td><td>ions</td></tr></table>
+        </div>
+
+        <div class="topic">
+            <h2>Topic 1.2: Mass Spectra of Elements</h2>
+            <h3>Isotopes</h3>
+            <p>Isotopes are atoms of the same element that have the same number of protons, different numbers of neutrons, and different masses. Same element → same chemical behavior. Different mass → affects atomic mass.</p>
+            <h3>Mass Spectrum</h3>
+            <p>A mass spectrum shows the masses of isotopes and the relative abundance of each isotope.</p>
+            <ul><li>x-axis → mass (amu)</li><li>y-axis → relative abundance</li><li>Each peak represents an isotope</li><li>Height of peak = how common that isotope is</li></ul>
+            <h3>Average Atomic Mass</h3>
+            <p>The average atomic mass is the weighted average of all naturally occurring isotopes. This value appears on the periodic table.</p>
+            <div class="key-concept"><strong>Weighted Average Formula:</strong><div class="equation">Average Atomic Mass = Σ (isotope mass × fractional abundance)</div></div>
+        </div>
+
+        <div class="topic">
+            <h2>Topic 1.3: Elemental Composition of Pure Substances</h2>
+            <h3>Molecular vs Ionic Substances</h3>
+            <p><strong>Molecular:</strong> Consist of discrete molecules held by covalent bonds (H₂O, CO₂)</p>
+            <p><strong>Ionic:</strong> Consist of ions in a crystal lattice, described using formula units (NaCl, CaF₂)</p>
+            <h3>Law of Definite Proportions</h3>
+            <div class="key-concept">In any pure sample of a compound, the ratio of the masses of the constituent elements is always the same.</div>
+            <h3>Empirical Formula</h3>
+            <p>The chemical formula showing the lowest whole number ratio of atoms.</p>
+            <table><tr><th>Compound</th><th>Empirical Formula</th></tr><tr><td>H₂O₂</td><td>HO</td></tr><tr><td>C₆H₁₂O₆</td><td>CH₂O</td></tr><tr><td>N₂O₄</td><td>NO₂</td></tr></table>
+        </div>
+
+        <div class="topic">
+            <h2>Topic 1.4: Composition of Mixtures</h2>
+            <p>Pure substances have fixed composition. Mixtures do not - different substances are physically combined and relative amounts can vary.</p>
+            <h3>Pure Substances vs Mixtures</h3>
+            <table><tr><th>Feature</th><th>Compound</th><th>Mixture</th></tr><tr><td>Composition</td><td>Fixed</td><td>Variable</td></tr><tr><td>Law of definite proportions</td><td>Yes</td><td>No</td></tr><tr><td>Chemical formula</td><td>Yes</td><td>No</td></tr><tr><td>Separation</td><td>Chemical</td><td>Physical</td></tr></table>
+            <h3>Elemental Analysis</h3>
+            <p>Used to determine relative atoms of each element and assess purity. If results match expected ratios → likely pure. If they vary → mixture or impure.</p>
+        </div>
+
+        <div class="topic">
+            <h2>Topic 1.5: Atomic Structure and Electron Configuration</h2>
+            <h3>Structure of the Atom</h3>
+            <ul><li><strong>Protons:</strong> positive, in nucleus</li><li><strong>Neutrons:</strong> no charge, in nucleus</li><li><strong>Electrons:</strong> negative, outside nucleus</li></ul>
+            <h3>Coulomb's Law</h3>
+            <div class="equation">F<sub>coulombic</sub> ∝ (q₁q₂)/r²</div>
+            <p>Attraction increases with greater nuclear charge and decreases with greater distance.</p>
+            <h3>Subshells and Capacities</h3>
+            <table><tr><th>Subshell</th><th>Max Electrons</th></tr><tr><td>s</td><td>2</td></tr><tr><td>p</td><td>6</td></tr><tr><td>d</td><td>10</td></tr><tr><td>f</td><td>14</td></tr></table>
+            <p><strong>Aufbau Principle:</strong> Electrons fill lowest energy levels first.</p>
+            <h3>Core vs Valence Electrons</h3>
+            <ul><li><strong>Core:</strong> Inner electrons, don't participate in bonding</li><li><strong>Valence:</strong> Outermost electrons, determine reactivity</li></ul>
+            <h3>Ionization Energy</h3>
+            <p>Energy required to remove an electron. Depends on distance from nucleus, shielding, and effective nuclear charge.</p>
+        </div>
+
+        <div class="topic">
+            <h2>Topic 1.6: Photoelectron Spectroscopy (PES)</h2>
+            <p>PES measures binding energy of electrons - how much energy is required to remove them.</p>
+            <h3>PES Spectrum</h3>
+            <ul><li>x-axis → binding energy</li><li>y-axis → relative number of electrons</li><li>Each peak = a specific subshell</li><li>Higher binding energy = closer to nucleus, stronger attraction</li><li>Peak height = number of electrons in that subshell</li></ul>
+            <p>PES experimentally confirms electron configuration and the Aufbau principle.</p>
+        </div>
+
+        <div class="topic">
+            <h2>Topic 1.7: Periodic Trends</h2>
+            <p>The periodic table is organized by repeating patterns in atomic properties.</p>
+            <h3>Key Trends</h3>
+            <p><strong>Ionization Energy:</strong> Increases across period, decreases down group</p>
+            <p><strong>Atomic Radius:</strong> Decreases across period, increases down group</p>
+            <p><strong>Ionic Radius:</strong> Cations smaller than neutral atoms, anions larger</p>
+            <p><strong>Electron Affinity:</strong> More negative across period, less negative down group</p>
+            <p><strong>Electronegativity:</strong> Increases across period, decreases down group (Fluorine is most electronegative)</p>
+        </div>
+
+        <div class="topic">
+            <h2>Topic 1.8: Valence Electrons and Ionic Compounds</h2>
+            <h3>Reactivity Trends</h3>
+            <p><strong>Metals:</strong> Reactivity increases down a group (easier to lose electrons)</p>
+            <p><strong>Nonmetals:</strong> Reactivity increases up a group (stronger attraction for electrons)</p>
+            <h3>Typical Ionic Charges</h3>
+            <table><tr><th>Group</th><th>Typical Charge</th></tr><tr><td>Group 1</td><td>+1</td></tr><tr><td>Group 2</td><td>+2</td></tr><tr><td>Group 13</td><td>+3</td></tr><tr><td>Group 15</td><td>−3</td></tr><tr><td>Group 16</td><td>−2</td></tr><tr><td>Group 17</td><td>−1</td></tr><tr><td>Group 18</td><td>0</td></tr></table>
+        </div>
+
+        <div class="vocab-section">
+            <h2>Vocabulary</h2>
+            <div class="vocab-grid">
+                <div class="vocab-item"><div class="vocab-term">Mole (mol)</div><div class="vocab-def">Amount containing 6.022 × 10²³ particles</div></div>
+                <div class="vocab-item"><div class="vocab-term">Avogadro's Number</div><div class="vocab-def">6.022 × 10²³ particles per mole</div></div>
+                <div class="vocab-item"><div class="vocab-term">Molar Mass</div><div class="vocab-def">Mass of one mole (g/mol)</div></div>
+                <div class="vocab-item"><div class="vocab-term">Isotope</div><div class="vocab-def">Same element, different neutrons</div></div>
+                <div class="vocab-item"><div class="vocab-term">Mass Spectrum</div><div class="vocab-def">Graph showing isotopic masses and abundances</div></div>
+                <div class="vocab-item"><div class="vocab-term">Empirical Formula</div><div class="vocab-def">Simplest whole-number atom ratio</div></div>
+                <div class="vocab-item"><div class="vocab-term">Coulomb's Law</div><div class="vocab-def">Force depends on charge and distance</div></div>
+                <div class="vocab-item"><div class="vocab-term">Ionization Energy</div><div class="vocab-def">Energy to remove an electron</div></div>
+                <div class="vocab-item"><div class="vocab-term">Shielding</div><div class="vocab-def">Core electrons reduce nuclear attraction</div></div>
+                <div class="vocab-item"><div class="vocab-term">PES</div><div class="vocab-def">Measures electron binding energies</div></div>
+                <div class="vocab-item"><div class="vocab-term">Atomic Radius</div><div class="vocab-def">Size of neutral atom</div></div>
+                <div class="vocab-item"><div class="vocab-term">Electronegativity</div><div class="vocab-def">Ability to attract electrons in bond</div></div>
+            </div>
+        </div>
+    </div>
+    <footer><p>&copy; 2025 ScoreFive. Built by students, for students.</p></footer>
+    <script>
+        const p = document.getElementById('particles'), c = 30;
+        for (let i = 0; i < c; i++) {
+            const d = document.createElement('div');
+            d.className = 'particle';
+            d.style.left = Math.random() * 100 + '%';
+            d.style.top = Math.random() * 100 + '%';
+            d.style.animationDelay = Math.random() * 15 + 's';
+            d.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            d.style.background = ['#667eea', '#f093fb', '#4facfe'][Math.floor(Math.random() * 3)];
+            p.appendChild(d);
+        }
+    </script>
+</body>
+</html>
