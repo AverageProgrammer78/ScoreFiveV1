@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 3: Civil Liberties and Civil Rights - ScoreFive</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inria Sans', sans-serif; font-weight: 400; line-height: 1.7; color: #e0e0e0; background: #000; overflow-x: hidden; }
+        @keyframes mesh { 0%, 100% { transform: translate(0, 0) scale(1); } 33% { transform: translate(30px, -50px) scale(1.1); } 66% { transform: translate(-20px, 20px) scale(0.9); } }
+        .mesh-bg { position: fixed; top: -50%; left: -50%; width: 200%; height: 200%; z-index: 0; opacity: 0.4; background: radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(240, 147, 251, 0.3) 0%, transparent 50%), radial-gradient(circle at 40% 20%, rgba(79, 172, 254, 0.3) 0%, transparent 50%), radial-gradient(circle at 60% 70%, rgba(245, 87, 108, 0.3) 0%, transparent 50%); animation: mesh 20s ease-in-out infinite; filter: blur(60px); }
+        .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+        .particle { position: absolute; width: 3px; height: 3px; background: #667eea; border-radius: 50%; opacity: 0.5; animation: float-particle 15s infinite ease-in-out; }
+        @keyframes float-particle { 0%, 100% { transform: translateY(0) translateX(0); opacity: 0; } 10% { opacity: 0.5; } 90% { opacity: 0.5; } 100% { transform: translateY(-100vh) translateX(50px); opacity: 0; } }
+        .grid-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(102, 126, 234, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(102, 126, 234, 0.03) 1px, transparent 1px); background-size: 50px 50px; z-index: 0; pointer-events: none; }
+        nav { background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(20px) saturate(180%); padding: 1.2rem 2rem; border-bottom: 1px solid rgba(102, 126, 234, 0.2); position: sticky; top: 0; z-index: 1000; }
+        nav .container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 2rem; font-weight: 700; background: linear-gradient(135deg, #667eea 0%, #f093fb 50%, #4facfe 100%); background-size: 200% 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: gradient-shift 3s ease infinite; cursor: pointer; transition: transform 0.3s; text-decoration: none; }
+        .logo:hover { transform: scale(1.05); }
+        @keyframes gradient-shift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+        .back-link { color: #667eea; text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        .back-link:hover { color: #f093fb; }
+        .content { max-width: 900px; margin: 0 auto; padding: 4rem 2rem 8rem; position: relative; z-index: 1; }
+        .unit-header { text-align: center; margin-bottom: 4rem; }
+        .unit-number { font-size: 1.2rem; color: rgba(255, 255, 255, 0.6); margin-bottom: 0.5rem; }
+        .unit-header h1 { font-size: 3.5rem; font-weight: 700; background: linear-gradient(135deg, #667eea 0%, #f093fb 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 1rem; }
+        .topic { margin-bottom: 4rem; padding: 2.5rem; background: rgba(15, 15, 15, 0.6); backdrop-filter: blur(20px); border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.05); }
+        .topic h2 { font-size: 2rem; font-weight: 700; color: #667eea; margin-bottom: 1.5rem; }
+        .topic h3 { font-size: 1.5rem; font-weight: 600; color: #f093fb; margin: 2rem 0 1rem 0; }
+        .topic h4 { font-size: 1.2rem; font-weight: 600; color: #4facfe; margin: 1.5rem 0 0.8rem 0; }
+        .topic p { margin-bottom: 1rem; color: rgba(255, 255, 255, 0.85); }
+        .topic ul, .topic ol { margin-left: 2rem; margin-bottom: 1rem; }
+        .topic li { margin-bottom: 0.5rem; color: rgba(255, 255, 255, 0.8); }
+        .key-concept { background: rgba(240, 147, 251, 0.1); padding: 1.5rem; border-radius: 10px; border-left: 3px solid #f093fb; margin: 1.5rem 0; }
+        .case-box { background: rgba(79, 172, 254, 0.1); padding: 1.5rem; border-radius: 10px; border-left: 3px solid #4facfe; margin: 1.5rem 0; }
+        .vocab-section { margin-top: 4rem; padding: 2.5rem; background: rgba(15, 15, 15, 0.6); backdrop-filter: blur(20px); border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.05); }
+        .vocab-section h2 { font-size: 2rem; font-weight: 700; color: #4facfe; margin-bottom: 2rem; text-align: center; }
+        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+        .vocab-item { padding: 1rem; background: rgba(255, 255, 255, 0.03); border-radius: 10px; border-left: 3px solid #667eea; }
+        .vocab-term { font-weight: 600; color: #f093fb; margin-bottom: 0.5rem; }
+        .vocab-def { font-size: 0.95rem; color: rgba(255, 255, 255, 0.7); }
+        footer { background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(20px); color: rgba(255, 255, 255, 0.5); padding: 2rem; text-align: center; border-top: 1px solid rgba(102, 126, 234, 0.2); position: relative; z-index: 1; }
+        @media (max-width: 768px) { .unit-header h1 { font-size: 2.5rem; } .topic { padding: 1.5rem; } .vocab-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="mesh-bg"></div>
+    <div class="particles" id="particles"></div>
+    <div class="grid-bg"></div>
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">ScoreFive</a>
+            <a href="ap-us-government.html" class="back-link">← Back to AP U.S. Government</a>
+        </div>
+    </nav>
+    <div class="content">
+        <div class="unit-header">
+            <p class="unit-number">UNIT 3</p>
+            <h1>Civil Liberties and Civil Rights</h1>
+        </div>
+
+        <div class="topic">
+            <h2>Understanding Civil Liberties</h2>
+            <p><strong>Civil liberties</strong> are constitutional protections that prevent the government from interfering with individual freedoms. These rights ensure that the government doesn't overreach and that people remain protected from government abuse.</p>
+            
+            <h3>The Bill of Rights</h3>
+            <p>The <strong>Bill of Rights</strong> consists of the Constitution's first ten amendments, intended to protect basic freedoms from government interference.</p>
+            
+            <div class="key-concept">
+                <strong>Key Distinction:</strong> Originally, the Bill of Rights only applied to the federal government, not state governments. This changed through the <strong>Incorporation Doctrine</strong>, which gradually applied these rights to the states through the Fourteenth Amendment.
+            </div>
+        </div>
+
+        <div class="topic">
+            <h2>First Amendment Freedoms</h2>
+            
+            <h3>The Five Freedoms</h3>
+            <p>The <strong>First Amendment</strong> protects five fundamental freedoms:</p>
+            <ul>
+                <li><strong>Freedom of Religion</strong> – Everyone can follow the religion of their choice</li>
+                <li><strong>Freedom of Speech</strong> – Protection of verbal and written expression</li>
+                <li><strong>Freedom of the Press</strong> – Media can operate without government censorship</li>
+                <li><strong>Freedom of Assembly</strong> – People can gather peacefully</li>
+                <li><strong>Freedom to Petition</strong> – Citizens can ask the government to address grievances</li>
+            </ul>
+
+            <h3>Religion Clauses</h3>
+            <h4>Establishment Clause</h4>
+            <p>The government cannot support, favor, or establish an official religion. This maintains the separation of church and state, often called the <strong>wall-of-separation principle</strong>.</p>
+            
+            <div class="case-box">
+                <strong>Engel v. Vitale</strong> – Banned school-led prayer in public schools, ruling that it violated the Establishment Clause.
+            </div>
+
+            <div class="case-box">
+                <strong>Lemon v. Kurtzman</strong> – Created the Lemon Test for church-state cases. Government action must: (1) have a secular purpose, (2) not primarily advance or inhibit religion, and (3) not create excessive government entanglement with religion.
+            </div>
+
+            <div class="case-box">
+                <strong>Abington v. Schempp</strong> – Schools cannot conduct sponsored Bible readings.
+            </div>
+
+            <div class="case-box">
+                <strong>Zelman v. Simmons-Harris</strong> – School vouchers can be used at religious schools without violating the Establishment Clause.
+            </div>
+
+            <h4>Free Exercise Clause</h4>
+            <p>Protects your right to practice your religion freely without government interference.</p>
+            
+            <div class="key-concept">
+                <strong>Conscientious Objector:</strong> An individual who refuses to fight in war due to moral or religious reasons, protected under free exercise principles.
+            </div>
+
+            <p><strong>Released Time:</strong> Students are allowed to leave school for religious instruction.</p>
+
+            <h3>Freedom of Speech</h3>
+            <p><strong>Freedom of expression</strong> covers not just words, but also actions that communicate a message.</p>
+
+            <h4>Limits on Speech</h4>
+            <div class="key-concept">
+                <strong>Clear and Present Danger Test:</strong> If speech creates an immediate, clear threat to public safety, it can be limited.
+            </div>
+
+            <div class="case-box">
+                <strong>Schenck v. United States</strong> – Established that during wartime, there are limits on free speech when it poses a clear and present danger.
+            </div>
+
+            <div class="case-box">
+                <strong>Gitlow v. New York</strong> – Started applying free speech protections to state governments through the Fourteenth Amendment.
+            </div>
+
+            <h4>Symbolic Speech</h4>
+            <p><strong>Symbolic speech</strong> refers to actions that represent a message, such as wearing armbands or burning a flag.</p>
+
+            <div class="case-box">
+                <strong>Texas v. Johnson</strong> – Flag burning is protected symbolic speech under the First Amendment.
+            </div>
+
+            <h4>Commercial Speech</h4>
+            <p><strong>Commercial speech</strong> includes advertising and content meant to sell products. It's protected, but not as strongly as political speech.</p>
+
+            <h4>Obscenity</h4>
+            <div class="case-box">
+                <strong>Roth v. United States</strong> – Obscene material is not protected by free speech.
+            </div>
+
+            <div class="case-box">
+                <strong>Miller v. California</strong> – Set the three-part test for determining what counts as obscene material.
+            </div>
+
+            <h3>Freedom of the Press</h3>
+            <h4>Prior Restraint</h4>
+            <p><strong>Prior restraint</strong> occurs when the government tries to stop speech or publication before it happens. This is generally unconstitutional.</p>
+
+            <div class="case-box">
+                <strong>Near v. Minnesota</strong> – The government usually cannot censor something before it's published.
+            </div>
+
+            <h4>Libel and Public Figures</h4>
+            <p><strong>Libel</strong> refers to written false statements that harm someone's reputation.</p>
+            
+            <p><strong>Actual malice</strong> means intentionally lying or recklessly disregarding the truth. Public officials must prove actual malice in libel cases.</p>
+
+            <div class="case-box">
+                <strong>New York Times v. Sullivan</strong> – Public officials must prove actual malice to win libel cases, protecting robust debate about public figures.
+            </div>
+
+            <p><strong>Public figures</strong> are people in the spotlight who have less protection from criticism than private individuals.</p>
+
+            <div class="case-box">
+                <strong>Miami Herald v. Tornillo</strong> – The government cannot force newspapers to print opposing viewpoints.
+            </div>
+
+            <h4>Broadcast Media Regulation</h4>
+            <div class="case-box">
+                <strong>Red Lion v. FCC</strong> – Allowed regulation of broadcast media because airwaves are a limited public resource.
+            </div>
+
+            <h3>Freedom of Association</h3>
+            <div class="case-box">
+                <strong>NAACP v. Alabama</strong> – Protected freedom of association and the right to privacy in organizational membership.
+            </div>
+
+            <h3>Historical Context: Suppression of Speech</h3>
+            <p><strong>Sedition Act</strong> – Criminalized speaking or writing critically about the government.</p>
+            <p><strong>Smith Act</strong> – Made it illegal to advocate overthrowing the government.</p>
+            <p><strong>Communist Control Act</strong> – A Cold War law aimed at limiting communist political activity.</p>
+            <p><strong>Internal Security Act</strong> – Required communist groups to register with the government.</p>
+            <p><strong>Red Scare</strong> – A period when Americans were intensely afraid of communism due to its rapid global spread.</p>
+
+            <h3>Preferred Position Doctrine</h3>
+            <p>First Amendment rights receive <strong>preferred position</strong> – they get extra protection compared to other rights because they're fundamental to democracy.</p>
+        </div>
+
+        <div class="topic">
+            <h2>Rights of the Accused</h2>
+            
+            <h3>Fourth Amendment: Search and Seizure</h3>
+            <p>Protects against <strong>unreasonable searches and seizures</strong>. You can't be searched without proper cause.</p>
+            
+            <p><strong>Probable cause</strong> is a reasonable belief that a crime has occurred, not just a hunch.</p>
+            
+            <p><strong>Search warrant</strong> is a court order that allows police to search a specific place.</p>
+
+            <div class="case-box">
+                <strong>Mapp v. Ohio</strong> – Established the exclusionary rule at the state level: evidence obtained illegally cannot be used in court.
+            </div>
+
+            <p><strong>Exclusionary rule</strong> means that if police find evidence illegally, they cannot use it in court.</p>
+
+            <p><strong>Good-faith exception</strong> allows evidence to be used if police honestly believed they were following the law, even if technically they weren't.</p>
+
+            <div class="case-box">
+                <strong>Zurcher v. Stanford Daily</strong> – Police can search newsrooms if they have a valid warrant.
+            </div>
+
+            <h3>Fifth Amendment: Self-Incrimination and Due Process</h3>
+            <p>The <strong>Fifth Amendment</strong> provides several protections:</p>
+            <ul>
+                <li><strong>Right to remain silent</strong> (protection against self-incrimination)</li>
+                <li><strong>Due process</strong> – Government must follow fair procedures</li>
+                <li><strong>No double jeopardy</strong> – Can't be tried twice for the same crime</li>
+            </ul>
+
+            <p><strong>Self-incrimination</strong> is the right not to testify against yourself and to remain silent.</p>
+
+            <p><strong>Due Process Clause</strong> requires the government to follow fair rules before punishing someone.</p>
+
+            <div class="case-box">
+                <strong>Miranda v. Arizona</strong> – Police must inform suspects of their rights (right to remain silent, right to an attorney) before questioning.
+            </div>
+
+            <h3>Sixth Amendment: Right to Counsel and Fair Trial</h3>
+            <p>The <strong>Sixth Amendment</strong> guarantees every criminal defendant:</p>
+            <ul>
+                <li>A <strong>fair and speedy trial</strong></li>
+                <li>An <strong>impartial jury</strong></li>
+                <li>The right to an <strong>attorney</strong></li>
+            </ul>
+
+            <div class="case-box">
+                <strong>Gideon v. Wainwright</strong> – The state must provide a lawyer if you cannot afford one.
+            </div>
+
+            <p><strong>Plea bargaining</strong> occurs when defendants plead guilty in exchange for a lighter sentence, often because they believe they won't win at trial.</p>
+
+            <h3>Eighth Amendment: Cruel and Unusual Punishment</h3>
+            <p>The <strong>Eighth Amendment</strong> protects against cruel and unusual punishment. Punishments cannot be extreme or inhumane.</p>
+
+            <div class="case-box">
+                <strong>Gregg v. Georgia</strong> – The death penalty is constitutional, but only under specific, fair procedures.
+            </div>
+
+            <div class="case-box">
+                <strong>McCleskey v. Kemp</strong> – The Court did not overturn the death penalty despite evidence of racial bias in sentencing.
+            </div>
+        </div>
+
+        <div class="topic">
+            <h2>The Right to Privacy</h2>
+            <p>The <strong>right to privacy</strong> is not explicitly mentioned in the Constitution, but the Supreme Court has recognized it as implied by several amendments.</p>
+
+            <div class="case-box">
+                <strong>Roe v. Wade</strong> – Established a constitutional right to abortion based on the right to privacy. The Court ruled that states could not ban abortion in the first trimester.
+            </div>
+
+            <div class="case-box">
+                <strong>Planned Parenthood v. Casey</strong> – Modified Roe by prohibiting states from banning abortion before fetal viability, but allowed some restrictions.
+            </div>
+
+            <h3>National Security and Privacy</h3>
+            <p><strong>FISA (Foreign Intelligence Surveillance Act)</strong> allows secret courts to approve surveillance for national security reasons, balancing privacy with security concerns.</p>
+        </div>
+
+        <div class="topic">
+            <h2>Key Constitutional Amendments</h2>
+            <p><strong>Fourteenth Amendment</strong> – Applies rights to the states through the Due Process Clause and guarantees equal protection under the law. This amendment is central to the incorporation doctrine.</p>
+
+            <p><strong>Incorporation Doctrine</strong> – The process of applying the Bill of Rights protections to state governments through the Fourteenth Amendment.</p>
+
+            <div class="case-box">
+                <strong>Barron v. Baltimore</strong> – Early case establishing that the Bill of Rights originally did not apply to state governments, only to the federal government.
+            </div>
+        </div>
+
+        <div class="topic">
+            <h2>Balancing Rights and Government Interests</h2>
+            <p><strong>Least restrictive means</strong> – When the government restricts rights, it must use the least restrictive method to achieve its legitimate goal.</p>
+            
+            <div class="key-concept">
+                <strong>Balancing Test:</strong> Courts often balance individual liberties against government interests in public safety, national security, and order. The government must show a compelling reason to restrict fundamental rights.
+            </div>
+        </div>
+
+        <div class="vocab-section">
+            <h2>Key Terms & Supreme Court Cases</h2>
+            <div class="vocab-grid">
+                <div class="vocab-item">
+                    <div class="vocab-term">Civil Liberties</div>
+                    <div class="vocab-def">Constitutional protections preventing government overreach</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="vocab-term">Bill of Rights</div>
+                    <div class="vocab-def">First ten amendments protecting basic freedoms</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="vocab-term">Incorporation Doctrine</div>
+                    <div class="vocab-def">Applying Bill of Rights to states via 14th Amendment</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="vocab-term">Establishment Clause</div>
+                    <div class="vocab-def">Government cannot favor or establish religion</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="vocab-term">Free Exercise Clause</div>
+                    <div class="vocab-def">Right to practice religion freely</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="vocab-term">Prior Restraint</div>
+                    <div class="vocab-def">Government censorship before publication</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="vocab-term">Symbolic Speech</div>
+                    <div class="vocab-def">Actions that communicate a message</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="vocab-term">Actual Malice</div>
+                    <div class="vocab-def">Knowingly lying or reckless disregard for truth</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="vocab-term">Exclusionary Rule</div>
+                    <div class="vocab-def">Illegally obtained evidence cannot be used in court</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="vocab-term">Probable Cause</div>
+                    <div class="vocab-def">Reasonable belief a crime occurred</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="vocab-term">Due Process</div>
+                    <div class="vocab-def">Government must follow fair procedures</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="vocab-term">Self-Incrimination</div>
+                    <div class="vocab-def">Right not to testify against yourself</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="vocab-term">Engel v. Vitale</div>
+                    <div class="vocab-def">Banned school-led prayer</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="vocab-term">Lemon v. Kurtzman</div>
+                    <div class="vocab-def">Created Lemon Test for church-state cases</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="vocab-term">Schenck v. United States</div>
+                    <div class="vocab-def">Clear and present danger test for speech</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="vocab-term">Texas v. Johnson</div>
+                    <div class="vocab-def">Flag burning is protected speech</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="vocab-term">New York Times v. Sullivan</div>
+                    <div class="vocab-def">Public officials must prove actual malice in libel</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="vocab-term">Mapp v. Ohio</div>
+                    <div class="vocab-def">Applied exclusionary rule to states</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="vocab-term">Miranda v. Arizona</div>
+                    <div class="vocab-def">Police must read suspects their rights</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="vocab-term">Gideon v. Wainwright</div>
+                    <div class="vocab-def">Right to attorney if you can't afford one</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="vocab-term">Roe v. Wade</div>
+                    <div class="vocab-def">Established constitutional right to abortion</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="vocab-term">Gregg v. Georgia</div>
+                    <div class="vocab-def">Death penalty constitutional with fair procedures</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer><p>&copy; 2025 ScoreFive. Built by students, for students.</p></footer>
+    <script>
+        const p = document.getElementById('particles'), c = 30;
+        for (let i = 0; i < c; i++) {
+            const d = document.createElement('div');
+            d.className = 'particle';
+            d.style.left = Math.random() * 100 + '%';
+            d.style.top = Math.random() * 100 + '%';
+            d.style.animationDelay = Math.random() * 15 + 's';
+            d.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            d.style.background = ['#667eea', '#f093fb', '#4facfe'][Math.floor(Math.random() * 3)];
+            p.appendChild(d);
+        }
+    </script>
+</body>
+</html>
