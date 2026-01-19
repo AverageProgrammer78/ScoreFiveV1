@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 2: Compound Structure and Properties - ScoreFive</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inria Sans', sans-serif; font-weight: 400; line-height: 1.7; color: #e0e0e0; background: #000; overflow-x: hidden; }
+        @keyframes mesh { 0%, 100% { transform: translate(0, 0) scale(1); } 33% { transform: translate(30px, -50px) scale(1.1); } 66% { transform: translate(-20px, 20px) scale(0.9); } }
+        .mesh-bg { position: fixed; top: -50%; left: -50%; width: 200%; height: 200%; z-index: 0; opacity: 0.4; background: radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(240, 147, 251, 0.3) 0%, transparent 50%), radial-gradient(circle at 40% 20%, rgba(79, 172, 254, 0.3) 0%, transparent 50%), radial-gradient(circle at 60% 70%, rgba(245, 87, 108, 0.3) 0%, transparent 50%); animation: mesh 20s ease-in-out infinite; filter: blur(60px); }
+        .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+        .particle { position: absolute; width: 3px; height: 3px; background: #667eea; border-radius: 50%; opacity: 0.5; animation: float-particle 15s infinite ease-in-out; }
+        @keyframes float-particle { 0%, 100% { transform: translateY(0) translateX(0); opacity: 0; } 10% { opacity: 0.5; } 90% { opacity: 0.5; } 100% { transform: translateY(-100vh) translateX(50px); opacity: 0; } }
+        .grid-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(102, 126, 234, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(102, 126, 234, 0.03) 1px, transparent 1px); background-size: 50px 50px; z-index: 0; pointer-events: none; }
+        nav { background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(20px) saturate(180%); padding: 1.2rem 2rem; border-bottom: 1px solid rgba(102, 126, 234, 0.2); position: sticky; top: 0; z-index: 1000; }
+        nav .container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 2rem; font-weight: 700; background: linear-gradient(135deg, #667eea 0%, #f093fb 50%, #4facfe 100%); background-size: 200% 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: gradient-shift 3s ease infinite; cursor: pointer; transition: transform 0.3s; text-decoration: none; }
+        .logo:hover { transform: scale(1.05); }
+        @keyframes gradient-shift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+        .back-link { color: #667eea; text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        .back-link:hover { color: #f093fb; }
+        .content { max-width: 900px; margin: 0 auto; padding: 4rem 2rem 8rem; position: relative; z-index: 1; }
+        .unit-header { text-align: center; margin-bottom: 4rem; }
+        .unit-number { font-size: 1.2rem; color: rgba(255, 255, 255, 0.6); margin-bottom: 0.5rem; }
+        .unit-header h1 { font-size: 3.5rem; font-weight: 700; background: linear-gradient(135deg, #667eea 0%, #f093fb 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 1rem; }
+        .topic { margin-bottom: 4rem; padding: 2.5rem; background: rgba(15, 15, 15, 0.6); backdrop-filter: blur(20px); border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.05); }
+        .topic h2 { font-size: 2rem; font-weight: 700; color: #667eea; margin-bottom: 1.5rem; }
+        .topic h3 { font-size: 1.5rem; font-weight: 600; color: #f093fb; margin: 2rem 0 1rem 0; }
+        .topic h4 { font-size: 1.2rem; font-weight: 600; color: #4facfe; margin: 1.5rem 0 0.8rem 0; }
+        .topic p { margin-bottom: 1rem; color: rgba(255, 255, 255, 0.85); }
+        .topic ul, .topic ol { margin-left: 2rem; margin-bottom: 1rem; }
+        .topic li { margin-bottom: 0.5rem; color: rgba(255, 255, 255, 0.8); }
+        .equation { background: rgba(102, 126, 234, 0.1); padding: 1.5rem; border-radius: 10px; border-left: 3px solid #667eea; margin: 1.5rem 0; font-family: 'Courier New', monospace; font-size: 1.1rem; color: #fff; }
+        .key-concept { background: rgba(240, 147, 251, 0.1); padding: 1.5rem; border-radius: 10px; border-left: 3px solid #f093fb; margin: 1.5rem 0; }
+        .visual-box { background: rgba(79, 172, 254, 0.1); padding: 1.5rem; border-radius: 10px; border-left: 3px solid #4facfe; margin: 1.5rem 0; text-align: center; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; background: rgba(255, 255, 255, 0.03); border-radius: 10px; overflow: hidden; }
+        th, td { padding: 1rem; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        th { background: rgba(102, 126, 234, 0.2); font-weight: 600; color: #fff; }
+        .vocab-section { margin-top: 4rem; padding: 2.5rem; background: rgba(15, 15, 15, 0.6); backdrop-filter: blur(20px); border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.05); }
+        .vocab-section h2 { font-size: 2rem; font-weight: 700; color: #4facfe; margin-bottom: 2rem; text-align: center; }
+        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+        .vocab-item { padding: 1rem; background: rgba(255, 255, 255, 0.03); border-radius: 10px; border-left: 3px solid #667eea; }
+        .vocab-term { font-weight: 600; color: #f093fb; margin-bottom: 0.5rem; }
+        .vocab-def { font-size: 0.95rem; color: rgba(255, 255, 255, 0.7); }
+        footer { background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(20px); color: rgba(255, 255, 255, 0.5); padding: 2rem; text-align: center; border-top: 1px solid rgba(102, 126, 234, 0.2); position: relative; z-index: 1; }
+        @media (max-width: 768px) { .unit-header h1 { font-size: 2.5rem; } .topic { padding: 1.5rem; } .vocab-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="mesh-bg"></div>
+    <div class="particles" id="particles"></div>
+    <div class="grid-bg"></div>
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">ScoreFive</a>
+            <a href="ap-chemistry.html" class="back-link">← Back to AP Chemistry</a>
+        </div>
+    </nav>
+    <div class="content">
+        <div class="unit-header">
+            <p class="unit-number">UNIT 2</p>
+            <h1>Compound Structure and Properties</h1>
+        </div>
+
+        <div class="topic">
+            <h2>Topic 2.1: Types of Chemical Bonds</h2>
+            
+            <h3>Electronegativity Trends</h3>
+            <p>Electronegativity describes how strongly an atom attracts electrons when bonded to another atom.</p>
+            
+            <h4>Periodic Trends</h4>
+            <ul>
+                <li><strong>Across a period (left → right):</strong> electronegativity increases</li>
+                <li><strong>Down a group (top → bottom):</strong> electronegativity decreases</li>
+            </ul>
+
+            <h4>Why These Trends Occur</h4>
+            <p><strong>a) Electronic Structure & Shell Model</strong></p>
+            <p>Atoms have energy levels (shells). As you go down a group, atoms have:</p>
+            <ul>
+                <li>More shells</li>
+                <li>Greater distance between nucleus and valence electrons</li>
+                <li>Weaker attraction for bonding electrons</li>
+            </ul>
+            <p>As you go across a period:</p>
+            <ul>
+                <li>Number of shells stays the same</li>
+                <li>Nuclear charge increases</li>
+                <li>Stronger pull on electrons</li>
+            </ul>
+
+            <p><strong>b) Coulomb's Law (Qualitative Understanding)</strong></p>
+            <p>Coulomb's Law explains attraction between charged particles:</p>
+            <ul>
+                <li>Greater nuclear charge → stronger attraction</li>
+                <li>Greater distance → weaker attraction</li>
+            </ul>
+            <div class="key-concept">
+                <strong>Key Insight:</strong><br>
+                • Across a period: stronger attraction → higher EN<br>
+                • Down a group: weaker attraction → lower EN<br>
+                <em>You do NOT need the equation for Coulomb's Law here — just the concept.</em>
+            </div>
+
+            <h3>Nonpolar Covalent Bonds</h3>
+            <p>A nonpolar covalent bond forms when valence electrons are shared equally between atoms.</p>
+            
+            <h4>When Do Nonpolar Bonds Form?</h4>
+            <ul>
+                <li>Atoms have equal or very similar electronegativities</li>
+                <li>ΔEN (difference in electronegativity) ≈ 0</li>
+            </ul>
+            
+            <div class="key-concept">
+                <strong>Example: Carbon–Hydrogen (C–H)</strong><br>
+                Carbon is slightly more electronegative than hydrogen, but the difference is small enough that electrons are shared nearly equally. This makes C–H bonds effectively nonpolar.
+            </div>
+
+            <h3>Polar Covalent Bonds</h3>
+            <p>A polar covalent bond forms when atoms with unequal electronegativities share electrons unequally.</p>
+
+            <h4>i. Partial Charges</h4>
+            <ul>
+                <li>The atom with higher electronegativity pulls electrons closer</li>
+                <li>That atom becomes partially negative (δ⁻)</li>
+                <li>The other atom becomes partially positive (δ⁺)</li>
+            </ul>
+
+            <h4>ii. Bond Dipoles in Single Bonds</h4>
+            <p>The arrow shows direction of polarity:</p>
+            <ul>
+                <li>Arrow points toward the more electronegative atom</li>
+                <li>The tail (with a cross) is at the atom with partial positive charge (δ⁺)</li>
+                <li>Larger electronegativity differences → larger bond dipole</li>
+            </ul>
+
+            <h4>iii. Ionic Character & Bonding Continuum</h4>
+            <p>Bonding exists on a continuum:</p>
+            <div class="equation">Nonpolar Covalent → Polar Covalent → Ionic</div>
+            <p>All polar covalent bonds have some ionic character, and ionic bonds represent the end of the spectrum.</p>
+
+            <h4>Summary Table</h4>
+            <table>
+                <tr>
+                    <th>Bond Type</th>
+                    <th>Electronegativity Difference</th>
+                    <th>Electron Sharing</th>
+                    <th>Charges Present</th>
+                </tr>
+                <tr>
+                    <td>Nonpolar Covalent</td>
+                    <td>Very small / zero</td>
+                    <td>Equal</td>
+                    <td>None</td>
+                </tr>
+                <tr>
+                    <td>Polar Covalent</td>
+                    <td>Moderate</td>
+                    <td>Unequal</td>
+                    <td>Partial (δ⁺ / δ⁻)</td>
+                </tr>
+                <tr>
+                    <td>Ionic</td>
+                    <td>Large</td>
+                    <td>Transferred</td>
+                    <td>Full charges</td>
+                </tr>
+            </table>
+
+            <h3>Bond Type Is Not Determined by Electronegativity Alone</h3>
+            <p>While electronegativity difference (ΔEN) is important, it is not the only factor used to classify a bond as ionic or covalent.</p>
+
+            <h4>General Classification Rule</h4>
+            <ul>
+                <li><strong>Metal + nonmetal</strong> → ionic bonding</li>
+                <li><strong>Nonmetal + nonmetal</strong> → covalent bonding</li>
+            </ul>
+            <p>This rule works because:</p>
+            <ul>
+                <li>Metals tend to lose electrons easily</li>
+                <li>Nonmetals tend to gain or attract electrons</li>
+                <li>This leads to electron transfer, which is characteristic of ionic bonding</li>
+            </ul>
+            <div class="key-concept">This is a general guideline, not an absolute rule.</div>
+
+            <h4>Why ΔEN Alone Is Insufficient</h4>
+            <ul>
+                <li>Some bonds have moderate ΔEN but behave more like ionic compounds</li>
+                <li>Other bonds may have a large ΔEN but still show covalent characteristics</li>
+                <li>Bonding exists on a spectrum, not in rigid categories</li>
+            </ul>
+
+            <h4>Properties Must Be Considered</h4>
+            <p>The best way to determine whether a compound is ionic or covalent is by looking at its properties, such as:</p>
+            <ul>
+                <li>Melting and boiling points</li>
+                <li>Electrical conductivity</li>
+                <li>Solubility</li>
+                <li>Brittleness or malleability</li>
+            </ul>
+            <p>Properties reflect the actual bonding and structure, not just a rule of thumb.</p>
+
+            <h3>Metallic Solids & Delocalized Electrons</h3>
+            <p>In a metallic solid, the valence electrons are not associated with any one atom — they are delocalized and free to move throughout the structure.</p>
+
+            <h4>What "Delocalized Electrons" Means</h4>
+            <ul>
+                <li>Electrons do not stay fixed around one atom</li>
+                <li>They form a shared pool or "sea" of electrons</li>
+                <li>Positive metal nuclei (or ions) are surrounded by this electron sea</li>
+            </ul>
+
+            <h4>Why Delocalization Matters</h4>
+            <p>Delocalized electrons result in characteristic metal properties:</p>
+            <ul>
+                <li><strong>Electrical conductivity</strong> — electrons can move under an electric field</li>
+                <li><strong>Thermal conductivity</strong> — electrons transfer heat efficiently</li>
+                <li><strong>Malleability and ductility</strong> — atoms slide without breaking bonds</li>
+                <li><strong>Luster</strong> — mobile electrons interact with light</li>
+            </ul>
+
+            <h4>Quick Comparison</h4>
+            <table>
+                <tr>
+                    <th>Bond Type</th>
+                    <th>Typical Participants</th>
+                    <th>What Happens to Electrons</th>
+                    <th>Common Properties</th>
+                </tr>
+                <tr>
+                    <td>Ionic</td>
+                    <td>Metal + Nonmetal</td>
+                    <td>Electrons transferred</td>
+                    <td>High MP, conducts when molten/aq</td>
+                </tr>
+                <tr>
+                    <td>Covalent</td>
+                    <td>Nonmetal + Nonmetal</td>
+                    <td>Electrons shared</td>
+                    <td>Lower MP, no conductivity</td>
+                </tr>
+                <tr>
+                    <td>Metallic</td>
+                    <td>Metal atoms</td>
+                    <td>Electrons delocalized</td>
+                    <td>Conductive as solid, malleable</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="topic">
+            <h2>Topic 2.2: Intramolecular Force and Potential Energy</h2>
+            <p>This section explains how potential energy varies with the distance between atoms, how bond length and bond energy relate to covalent bond order and atomic size, and how Coulomb's law describes ionic interaction strength.</p>
+
+            <h3>Potential Energy vs. Internuclear Distance</h3>
+            <ul>
+                <li><strong>Internuclear distance</strong> is the distance between the nuclei</li>
+                <li>At large distances, atoms do not interact, so potential energy is near zero</li>
+                <li>As atoms get closer, attractive forces between the nuclei and electrons lower the potential energy</li>
+                <li>The lowest point on the curve is the <strong>equilibrium bond length</strong></li>
+                <li>The depth of the curve below zero represents <strong>bond energy</strong> — the energy required to separate the atoms to infinite distance</li>
+                <li>If atoms get too close, repulsive forces dominate and potential energy rises sharply</li>
+            </ul>
+
+            <h3>Covalent Bond Length & Bond Order</h3>
+            <p>Bond order refers to how many electron pairs are shared:</p>
+            <ul>
+                <li>Single bond = 1 pair</li>
+                <li>Double bond = 2 pairs</li>
+                <li>Triple bond = 3 pairs</li>
+            </ul>
+            
+            <div class="key-concept">
+                <strong>As bond order increases:</strong><br>
+                • Bond length decreases<br>
+                • Bond energy increases — more energy is needed to break stronger bonds<br><br>
+                This happens because more shared electrons create stronger attraction between the nuclei and the shared electrons.
+            </div>
+
+            <h3>Coulomb's Law & Ionic Interaction Strength</h3>
+            <p>For ionic interactions (cations + anions), Coulomb's law describes how strongly the ions attract each other.</p>
+            <div class="equation">F ∝ (q₁ × q₂) / r²</div>
+            
+            <p>Key implications for ionic bonds:</p>
+            <ul>
+                <li>Larger charges (like 2+ & 2–) → stronger attraction</li>
+                <li>Smaller ions (smaller distance r) → stronger attraction</li>
+            </ul>
+            <p>Coulomb's law explains why ions with larger charges and smaller radii form stronger ionic interactions — which shows up as deeper potential wells on a diagram.</p>
+
+            <h4>A Quick Summary</h4>
+            <table>
+                <tr>
+                    <th>Concept</th>
+                    <th>Key Relationship</th>
+                </tr>
+                <tr>
+                    <td>Potential energy vs. internuclear distance</td>
+                    <td>Lowest PE = equilibrium bond length; depth = bond energy</td>
+                </tr>
+                <tr>
+                    <td>Bond order (covalent)</td>
+                    <td>↑ bond order → ↓ bond length, ↑ bond energy</td>
+                </tr>
+                <tr>
+                    <td>Ionic interactions (Coulomb's law)</td>
+                    <td>Stronger when charges are larger and particles are closer</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="topic">
+            <h2>Topic 2.3: Structure of Ionic Solids</h2>
+            
+            <h3>Ionic Solids Do Not Exist as Discrete Molecules</h3>
+            <p>Unlike molecules like H₂O or CO₂, ionic solids are not made of individual ion pairs floating independently.</p>
+            <p>Instead, they form <strong>continuous crystal lattices</strong> — repeating 3‑D arrays of ions.</p>
+
+            <h3>Particulate Model of an Ionic Solid</h3>
+            <h4>Particles Arranged in a Periodic 3‑D Array</h4>
+            <div class="visual-box">
+                <p>An ionic solid can be represented by a particulate model with alternating cations and anions arranged in a regular pattern.</p>
+            </div>
+            
+            <p>This arrangement ensures that:</p>
+            <ul>
+                <li>Attractive forces (cation–anion) are maximized</li>
+                <li>Repulsive forces (like‑charge ion–ion) are minimized</li>
+                <li>This matches Coulomb's Law</li>
+            </ul>
+
+            <h3>Why This Arrangement is Stable</h3>
+            
+            <h4>Maximizing Attraction</h4>
+            <ul>
+                <li>Opposite charges attract more strongly when the ions are near each other</li>
+                <li>Placing cations next to anions allows many strong attractions</li>
+            </ul>
+
+            <h4>Minimizing Repulsion</h4>
+            <ul>
+                <li>Like charges (cation–cation or anion–anion) are kept as far apart as possible</li>
+                <li>This reduces destabilizing repulsive forces throughout the lattice</li>
+            </ul>
+
+            <div class="key-concept">
+                Together, these effects lower the potential energy of the whole solid and create a highly stable structure.
+            </div>
+
+            <h3>What Coulomb's Law Predicts About Lattice Arrangement</h3>
+            <ul>
+                <li>More ion neighbors of opposite charge → stronger overall attraction</li>
+                <li><strong>Charges matter:</strong> larger magnitude charges give stronger attraction</li>
+                <li><strong>Distance matters:</strong> smaller ions allow closer packing and stronger attraction</li>
+            </ul>
+            <p>This is why the crystal lattice forms with alternating charges — it produces the strongest net electrostatic attraction consistent with Coulomb's law.</p>
+        </div>
+
+        <div class="topic">
+            <h2>Topic 2.4: Structure of Metals and Alloys</h2>
+            
+            <h3>Metallic Bonding</h3>
+            <p>Metallic bonding can be represented as:</p>
+            <ul>
+                <li>An array of positive metal ions</li>
+                <li>Surrounded by a "sea of delocalized valence electrons"</li>
+            </ul>
+
+            <div class="visual-box">
+                <p><strong>Visualization of Metallic Bonding:</strong></p>
+                <p>• Metal atoms contribute valence electrons to a delocalized electron cloud<br>
+                • Positive metal ions are arranged in a 3‑D lattice<br>
+                • Delocalized electrons flow throughout the structure</p>
+            </div>
+
+            <h3>Why This Model Matters</h3>
+            <ul>
+                <li>Electrons are free to move → explains high <strong>electrical and thermal conductivity</strong></li>
+                <li>Ions can slide past each other without bond breakage → explains <strong>malleability and ductility</strong></li>
+                <li>Delocalized electrons reflect light → <strong>metallic luster</strong></li>
+            </ul>
+        </div>
+
+        <div class="vocab-section">
+            <h2>Vocabulary</h2>
+            <div class="vocab-grid">
+                <div class="vocab-item">
+                    <div class="vocab-term">Electronegativity</div>
+                    <div class="vocab-def">Ability of an atom to attract electrons in a bond</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="vocab-term">Nonpolar Covalent Bond</div>
+                    <div class="vocab-def">Equal sharing of electrons (ΔEN ≈ 0)</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="vocab-term">Polar Covalent Bond</div>
+                    <div class="vocab-def">Unequal sharing with partial charges (δ⁺/δ⁻)</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="vocab-term">Bond Dipole</div>
+                    <div class="vocab-def">Arrow showing polarity direction in a bond</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="vocab-term">Ionic Bond</div>
+                    <div class="vocab-def">Electron transfer between metal and nonmetal</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="vocab-term">Delocalized Electrons</div>
+                    <div class="vocab-def">Electrons free to move throughout structure</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="vocab-term">Bond Order</div>
+                    <div class="vocab-def">Number of electron pairs shared (1, 2, or 3)</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="vocab-term">Bond Length</div>
+                    <div class="vocab-def">Equilibrium distance between bonded nuclei</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="vocab-term">Bond Energy</div>
+                    <div class="vocab-def">Energy needed to break a bond</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="vocab-term">Crystal Lattice</div>
+                    <div class="vocab-def">Repeating 3-D array of ions in ionic solid</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="vocab-term">Metallic Bonding</div>
+                    <div class="vocab-def">Metal ions in sea of delocalized electrons</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="vocab-term">Coulomb's Law</div>
+                    <div class="vocab-def">Describes electrostatic attraction/repulsion</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer><p>&copy; 2025 ScoreFive. Built by students, for students.</p></footer>
+    <script>
+        const p = document.getElementById('particles'), c = 30;
+        for (let i = 0; i < c; i++) {
+            const d = document.createElement('div');
+            d.className = 'particle';
+            d.style.left = Math.random() * 100 + '%';
+            d.style.top = Math.random() * 100 + '%';
+            d.style.animationDelay = Math.random() * 15 + 's';
+            d.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            d.style.background = ['#667eea', '#f093fb', '#4facfe'][Math.floor(Math.random() * 3)];
+            p.appendChild(d);
+        }
+    </script>
+</body>
+</html>
